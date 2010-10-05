@@ -1,0 +1,7 @@
+export(
+	GeneGA,
+	GeneFoldGA,
+	GeneCodon
+)
+exportClasses(GeneGA,GeneFoldGA)
+exportMethods(show,plotGeneGA)
