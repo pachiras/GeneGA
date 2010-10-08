@@ -1,11 +1,9 @@
 \name{GeneFoldGA-class}
 \docType{class}
 \alias{GeneFoldGA-class}
+\alias{show,GeneFoldGA-method}
 \title{Class "GeneFoldGA"}
 \description{GeneFoldGA class for representing the GeneFoldGA results}
-\section{Objects from the Class}{
-Objects can be created by calls of the form \code{new("GeneFoldGA", ...)}.
-}
 \section{Slots}{
   \describe{
     \item{\code{seq}:}{Object of class \code{"character"}. The mRNA sequence to optimize.}
@@ -26,8 +24,8 @@ Objects can be created by calls of the form \code{new("GeneFoldGA", ...)}.
 
 \section{Methods}{
   \describe{
-    \item{print}{\code{signature(object = "GeneGA")}: ... }
-    \item{plotGeneGA}{\code{signature(object = "GeneGA")}: ... }
+    \item{show}{\code{signature(object = "GeneFoldGA")}: Displaying the results of GeneFoldGA, the first three distinctive and optimum sequences can be returned, as well as the corresponding minimum free energys. }
+    \item{plotGeneGA}{\code{signature(object = "GeneFoldGA")}: Visualizing the variation of maximum and mean variable values during the progress that genetic algorithm performed. Furthermore, the plot also can be used to check the results whether well converged. }
   }
 }
 \seealso{\code{\link{GeneFoldGA}}, \code{\link{GeneGA}}, 

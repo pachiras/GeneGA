@@ -14,7 +14,7 @@ function(sequence=NULL,
 	if(is.null(region)) region=c(1,nchar(sequence))
 	assign("translate",seqinr::translate,envir=.GlobalEnv)
 	#construct a hash between amino acids and codons
-		code_invert=hash()
+	code_invert=hash()
 	stardardSeq="GAGTCGTTCAGTAAACACTGTCAACGGCAGGCTCGAATATAACCCGAAACAACGTGGAATTTTCTCACCGTCCTTCCGTGCTCTCTGGGGGTTATGTAGCCAGCAACTGTAAGATACGGCAGCAGGAACTGAAAGTCAGTGATCGCGCGTGGATTACCTCATTATGACCTATTGCGCGATGCCGGTTCCATT"
 	for(i in seq(1,192,3)){
 		code_invert[[substr(stardardSeq,i,i+2)]]=translate(s2c(stardardSeq)[i:(i+2)],numcode = numcode)
@@ -62,7 +62,8 @@ function(sequence=NULL,
 		#do iteration when iter is less than generation
 		if(iter_order < iters){
 			#selection process
-			#firstly, select the population based on the integer part of  the product of proportion of its evaluation value and popSize.
+			#firstly, select the population based on the integer part 
+			#of the product of proportion of its evaluation value and popSize.
 			new_pop=matrix(nrow=popSize,ncol=codonsize)
 			eval_prop=rep(NA,popSize)
 			eval_digit_prop=rep(NA,popSize)
@@ -77,7 +78,8 @@ function(sequence=NULL,
 			n=1
 			for(num in 1:popSize){
 				if(num_each[num] > 1){
-					new_pop[n:(n+num_each[num]-1),]=matrix(rep(population[num,],times=num_each[num]),nrow=num_each[num],byrow=TRUE)
+					new_pop[n:(n+num_each[num]-1),]=matrix(rep(population[num,],
+						times=num_each[num]),nrow=num_each[num],byrow=TRUE)
 					free_en_new[n:(n+num_each[num]-1)]=rep(free_en[num],times=num_each[num])
 					n=n+num_each[num]
 				}
@@ -87,7 +89,8 @@ function(sequence=NULL,
 					n=n+1
 			}
 			}
-			#secondly, select the population by the digit part of eval_prop*popSize using roulette algorithm
+			#secondly, select the population by the digit part of eval_prop*popSize 
+			#using roulette algorithm
 			eval_digit=sapply(eval_prop*popSize,function(x)(x-floor(x)))
 			eval_sum_digit=sum(eval_digit)
 			for(i in 1:popSize){
@@ -119,8 +122,10 @@ function(sequence=NULL,
 			while(i < length(sample_pop)){
 				crossOverPoint=sample(1:(codonsize-1),1)
 				tt=new_pop[sample_pop[i],]
-				new_pop[sample_pop[i],]=c(new_pop[sample_pop[i],1:crossOverPoint],new_pop[sample_pop[i+1],(crossOverPoint+1):codonsize])
-				new_pop[sample_pop[i+1],]=c(new_pop[sample_pop[i+1],1:crossOverPoint],tt[(crossOverPoint+1):codonsize])
+				new_pop[sample_pop[i],]=c(new_pop[sample_pop[i],1:crossOverPoint],
+					new_pop[sample_pop[i+1],(crossOverPoint+1):codonsize])
+				new_pop[sample_pop[i+1],]=c(new_pop[sample_pop[i+1],
+					1:crossOverPoint],tt[(crossOverPoint+1):codonsize])
 				i=i+2
 			}
 
@@ -139,9 +144,10 @@ function(sequence=NULL,
 		}
 	}
 	#report GA results
-		results <- new("GeneFoldGA", seq=sequence,iters=iters,popSize=popSize,crossoverRate=crossoverRate,mutationChance=mutationChance,	region=region,eval_value=eval_value,
-free_en=free_en,eval_value_set=eval_value_set,eval_value_set02=eval_value_set02,population=population,ramp=FALSE,
-		organism=organism);
+		results <- new("GeneFoldGA", seq=sequence,iters=iters,popSize=popSize,
+				crossoverRate=crossoverRate,mutationChance=mutationChance,region=region,
+				eval_value=eval_value,free_en=free_en,eval_value_set=eval_value_set,
+				eval_value_set02=eval_value_set02,population=population,ramp=FALSE,organism=organism);
 	return(results)
 }
 

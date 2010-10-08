@@ -10,7 +10,7 @@ function(sequence=NULL,
 		frontSeq=NULL,
 		ramp=FALSE,
 		numcode = 1
-		){
+	){
 	data(wSet)
 	if(is.null(region)) region=c(1,nchar(sequence))
 	if(ramp != FALSE & region[1] < ramp & region[2] > ramp){
@@ -39,7 +39,7 @@ function(sequence=NULL,
 	#if not full sequence was specified, subtract the target sequence from given sequence
 	seq=substr(sequence,region[1],region[2])
 	if((region[2]-region[1]+1)%%3 != 0){
-	warning("the given region must be the multiple of  3, please reassign the region")
+		warning("the given region must be the multiple of  3, please reassign the region")
 	}
 	amino_seq=translate(s2c(seq),numcode = numcode)
 	#producing random population
@@ -76,16 +76,19 @@ function(sequence=NULL,
 		}
 		#compute evaluation values
 		if(ramp == FALSE){
-			eval_value=sapply(rank(free_en,ties.method="max"),function(x)x**2)+sapply(rank(CAI_value,ties.method="max"),function(x)x**2)
+			eval_value=sapply(rank(free_en,ties.method="max"),function(x)x**2)
+				+sapply(rank(CAI_value,ties.method="max"),function(x)x**2)
 			CAI_value_set02=append(CAI_value_set02,max(CAI_value))
 		}else {
 				if(region[1] > ramp){
-					eval_value=sapply(rank(free_en,ties.method="max"),function(x)x**2)+sapply(rank(CAI_value,ties.method="max"),function(x)x**2)
+					eval_value=sapply(rank(free_en,ties.method="max"),
+						function(x)x**2)+sapply(rank(CAI_value,ties.method="max"),function(x)x**2)
 					CAI_value_set02=append(CAI_value_set02,max(CAI_value))
-				}else if(region[2]<=ramp){
-					eval_value=sapply(rank(free_en,ties.method="max"),function(x)x**2)+sapply(rank(sapply(CAI_value,function(x)1/x),ties.method="max"),function(x)x**2)
+				}else if(region[2] <= ramp){
+					eval_value=sapply(rank(free_en,ties.method="max"),function(x)x**2)
+						+sapply(rank(sapply(CAI_value,function(x)1/x),ties.method="max"),function(x)x**2)
 					CAI_value_set02=append(CAI_value_set02,min(CAI_value))
-			}
+							}
 			}
 		#cat(eval_value,"\n",file="result.txt",sep=" ",append=TRUE)
 		#store the mean eval value and maxium eval value into eval_value_set and eval_value_set02
@@ -99,7 +102,8 @@ function(sequence=NULL,
 		#do iteration when iter is less than generation
 		if(iter_order < iters){
 			#selection process
-			#firstly, select the population based on the integer part of  the product of proportion of its evaluation value and popSize.
+			#firstly, select the population based on the integer part of  the
+			# product of proportion of its evaluation value and popSize.
 			new_pop=matrix(nrow=popSize,ncol=codonsize)
 			eval_prop=rep(NA,popSize)
 			eval_digit_prop=rep(NA,popSize)
@@ -115,7 +119,8 @@ function(sequence=NULL,
 			n=1
 			for(num in 1:popSize){
 				if(num_each[num] > 1){
-					new_pop[n:(n+num_each[num]-1),]=matrix(rep(population[num,],times=num_each[num]),nrow=num_each[num],byrow=TRUE)
+					new_pop[n:(n+num_each[num]-1),]=matrix(rep(population[num,],
+						times=num_each[num]),nrow=num_each[num],byrow=TRUE)
 					free_en_new[n:(n+num_each[num]-1)]=rep(free_en[num],times=num_each[num])
 					CAI_value_new[n:(n+num_each[num]-1)]=rep(CAI_value[num],times=num_each[num])
 					n=n+num_each[num]
@@ -152,12 +157,15 @@ function(sequence=NULL,
 			# crossover
 			#preserve the first ten biggest evaluation value to prevent their changing
 			if(ramp == FALSE){
-				new_eval_value=sapply(rank(free_en_new,ties.method="max"),function(x)x**2)+sapply(rank(CAI_value_new,ties.method="max"),function(x)x**2)
+				new_eval_value=sapply(rank(free_en_new,ties.method="max"),
+					function(x)x**2)+sapply(rank(CAI_value_new,ties.method="max"),function(x)x**2)
 			}else{
 				if(region[1] > ramp){
-					new_eval_value=sapply(rank(free_en_new,ties.method="max"),function(x)x**2)+sapply(rank(CAI_value_new,ties.method="max"),function(x)x**2)
+					new_eval_value=sapply(rank(free_en_new,ties.method="max"),function(x)x**2)
+					+sapply(rank(CAI_value_new,ties.method="max"),function(x)x**2)
 				}else if(region[2] <= ramp){
-				new_eval_value=sapply(rank(free_en_new,ties.method="max"),function(x)x**2)+sapply(rank(sapply(CAI_value_new,function(x)1/x),ties.method="max"),function(x)x**2)
+					new_eval_value=sapply(rank(free_en_new,ties.method="max"),function(x)x**2)
+					+sapply(rank(sapply(CAI_value_new,function(x)1/x),ties.method="max"),function(x)x**2)
 				}
 				}
 
@@ -170,8 +178,10 @@ function(sequence=NULL,
 			while(i < length(sample_pop)){
 				crossOverPoint=sample(1:(codonsize-1),1)
 				tt=new_pop[sample_pop[i],]
-				new_pop[sample_pop[i],]=c(new_pop[sample_pop[i],1:crossOverPoint],new_pop[sample_pop[i+1],(crossOverPoint+1):codonsize])
-				new_pop[sample_pop[i+1],]=c(new_pop[sample_pop[i+1],1:crossOverPoint],tt[(crossOverPoint+1):codonsize])
+				new_pop[sample_pop[i],]=c(new_pop[sample_pop[i],1:crossOverPoint],
+					new_pop[sample_pop[i+1],(crossOverPoint+1):codonsize])
+				new_pop[sample_pop[i+1],]=c(new_pop[sample_pop[i+1],
+					1:crossOverPoint],tt[(crossOverPoint+1):codonsize])
 				i=i+2
 			}
 
@@ -192,9 +202,11 @@ function(sequence=NULL,
 		}
 	}
 	#report GA results
-		results <- new("GeneGA", seq=sequence,iters=iters,popSize=popSize,crossoverRate=crossoverRate,mutationChance=mutationChance,
-		region=region,organism=organism,eval_value=eval_value,free_en=free_en,CAI_value=CAI_value,eval_value_set=eval_value_set,free_en_set=free_en_set,CAI_value_set=CAI_value_set,
-		eval_value_set02=eval_value_set02,free_en_set02=free_en_set02,CAI_value_set02=CAI_value_set02,population=population,ramp=ramp);
+		results <- new("GeneGA", seq=sequence,iters=iters,popSize=popSize,crossoverRate=crossoverRate,
+			mutationChance=mutationChance,region=region,organism=organism,eval_value=eval_value,
+			free_en=free_en,CAI_value=CAI_value,eval_value_set=eval_value_set,free_en_set=free_en_set,
+			CAI_value_set=CAI_value_set,eval_value_set02=eval_value_set02,free_en_set02=free_en_set02,
+			CAI_value_set02=CAI_value_set02,population=population,ramp=ramp);
 	return(results)
 }
 

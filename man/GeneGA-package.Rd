@@ -11,8 +11,8 @@ R based Genetic algorithm for gene expression optimization considering mRNA seco
 \tabular{ll}{
 Package: \tab GeneGA\cr
 Type: \tab Package\cr
-Version: \tab 0.0.2\cr
-Date: \tab 2010-10-02\cr
+Version: \tab 0.99.1\cr
+Date: \tab 2010-10-08\cr
 License: \tab GPL version 2\cr
 LazyLoad: \tab yes\cr
 }
