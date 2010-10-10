@@ -1,8 +1,8 @@
 Package: GeneGA
 Type: Package
 Title: Design gene based on both mRNA secondary structure and codon usage bias using Genetic algorithm
-Version: 0.99.0
-Date: 2010-10-02
+Version: 0.99.1
+Date: 2010-10-10
 Author: Zhenpeng Li, Fei Li, Xiaochen Bo and Shengqi Wang
 Maintainer: Zhenpeng Li <zpli21@gmail.com>
 Depends:GeneRfold, seqinr, hash, methods
