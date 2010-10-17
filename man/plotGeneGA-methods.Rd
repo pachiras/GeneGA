@@ -8,14 +8,14 @@
 \alias{plotGeneGA,GeneGA-method}
 \title{ plotGeneGA methods of GeneGA and GeneFoldGA objects }
 \description{
- plotGeneGA implement plotGeneGA methods for GeneGA and GeneFoldGA objects respectively.The functions visualize the variation of maximum(minimum) and mean overall evaluation values and variable values during the progress that genetic algorithm performed. Furthermore, the plot also can be used to check the results whether well converged.
+ plotGeneGA implement plotGeneGA methods for GeneGA and GeneFoldGA objects respectively.The functions visualize the variation of optimized and mean overall evaluation values and variable values during the progress that genetic algorithm performed. Furthermore, the plot also can be used to check the results whether well converged.
 }
 \section{Methods}{
 \describe{
 
 \item{x = "GeneFoldGA"}{ plotGeneGA method for GeneFoldGA}
 
-\item{x = "GeneGA"}{ plotGeneGA method for GeneGA, it also has a parameter "type", which can be assigned with one of the three values, the default value is "default", which show the variation of  mean  and maximum(minimum) overall evaluation value along with the generation. while 1, 2 display the variation of mean  and maximum(minimum) overall CAI value and minimum free energy respectively, and 3 display the scatter plot of two variables--CAI and minimum free energy }
+\item{x = "GeneGA"}{ plotGeneGA method for GeneGA, it also has a parameter "type", which can be assigned with one of the three values, the default value is "default", which show the variation of  mean  and optimized overall evaluation value along with the generation. while 1, 2 display the variation of mean  and optimized overall CAI value and minimum free energy respectively, and 3 display the scatter plot of two variables--CAI and minimum free energy }
 }}
 
 \author{

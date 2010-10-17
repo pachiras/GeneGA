@@ -21,7 +21,7 @@ All the slots of the GeneFoldGA class, plus the following slots:
 \section{Methods}{
   \describe{
     \item{show}{\code{signature(object = "GeneGA")}: Displaying the results of GeneGA and GeneFoldGA, the first three distinctive and optimum sequences can be returned, as well as their overall evaluation values, CAI values and minimum free energys. }
-    \item{plotGeneGA}{\code{signature(object = "GeneGA")}: Visualizing the variation of maximum(minimum) and mean overall evaluation values and variable values during the progress that genetic algorithm performed. Furthermore, the plot also can be used to check the results whether well converged. }
+    \item{plotGeneGA}{\code{signature(object = "GeneGA")}: Visualizing the variation of optimized and mean overall evaluation values and variable values during the progress that genetic algorithm performed. Furthermore, the plot also can be used to check the results whether well converged. }
   }
 }
 \seealso{\code{\link{GeneGA}}, \code{\link{GeneFoldGA}}, \code{\link{GeneCodon}},

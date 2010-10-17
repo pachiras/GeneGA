@@ -76,18 +76,18 @@ function(sequence=NULL,
 		}
 		#compute evaluation values
 		if(ramp == FALSE){
-			eval_value=sapply(rank(free_en,ties.method="max"),function(x)x**2)
-				+sapply(rank(CAI_value,ties.method="max"),function(x)x**2)
-			CAI_value_set02=append(CAI_value_set02,max(CAI_value))
+			eval_value=sapply(rank(free_en,ties.method="max"),function(x)x**2)+
+				sapply(rank(CAI_value,ties.method="max"),function(x)x**2)
+			CAI_value_set02=append(CAI_value_set02,CAI_value[which.max(eval_value)])
 		}else {
 				if(region[1] > ramp){
 					eval_value=sapply(rank(free_en,ties.method="max"),
 						function(x)x**2)+sapply(rank(CAI_value,ties.method="max"),function(x)x**2)
-					CAI_value_set02=append(CAI_value_set02,max(CAI_value))
+					CAI_value_set02=append(CAI_value_set02,CAI_value[which.max(eval_value)])
 				}else if(region[2] <= ramp){
-					eval_value=sapply(rank(free_en,ties.method="max"),function(x)x**2)
-						+sapply(rank(sapply(CAI_value,function(x)1/x),ties.method="max"),function(x)x**2)
-					CAI_value_set02=append(CAI_value_set02,min(CAI_value))
+					eval_value=sapply(rank(free_en,ties.method="max"),function(x)x**2)+
+						sapply(rank(sapply(CAI_value,function(x)1/x),ties.method="max"),function(x)x**2)
+					CAI_value_set02=append(CAI_value_set02,CAI_value[which.max(eval_value)])
 							}
 			}
 		#cat(eval_value,"\n",file="result.txt",sep=" ",append=TRUE)
@@ -97,7 +97,7 @@ function(sequence=NULL,
 		CAI_value_set=append(CAI_value_set,mean(CAI_value))
 
 		eval_value_set02=append(eval_value_set02,max(eval_value))
-		free_en_set02=append(free_en_set02,max(free_en))
+		free_en_set02=append(free_en_set02,free_en[which.max(eval_value)])
 		
 		#do iteration when iter is less than generation
 		if(iter_order < iters){
@@ -161,11 +161,11 @@ function(sequence=NULL,
 					function(x)x**2)+sapply(rank(CAI_value_new,ties.method="max"),function(x)x**2)
 			}else{
 				if(region[1] > ramp){
-					new_eval_value=sapply(rank(free_en_new,ties.method="max"),function(x)x**2)
-					+sapply(rank(CAI_value_new,ties.method="max"),function(x)x**2)
+					new_eval_value=sapply(rank(free_en_new,ties.method="max"),function(x)x**2)+
+						sapply(rank(CAI_value_new,ties.method="max"),function(x)x**2)
 				}else if(region[2] <= ramp){
-					new_eval_value=sapply(rank(free_en_new,ties.method="max"),function(x)x**2)
-					+sapply(rank(sapply(CAI_value_new,function(x)1/x),ties.method="max"),function(x)x**2)
+					new_eval_value=sapply(rank(free_en_new,ties.method="max"),function(x)x**2)+
+						sapply(rank(sapply(CAI_value_new,function(x)1/x),ties.method="max"),function(x)x**2)
 				}
 				}
 

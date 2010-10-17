@@ -115,6 +115,10 @@ plotGeneGA(GeneGA.result, type=3)
 @
 \end{center}
 @
+\section{Installation notes}
+The {\tt GeneGA} package depends on four other R packages: one Bioconductor package and three CRAN packages. Make sure these R packages and Vienna RNA Package(http://www.tbi.univie.ac.at/~ivo/RNA/) be installed before installing {\tt GeneGA}.
+\par
+
 \bibliography{GeneGA}
 
 \end{document}

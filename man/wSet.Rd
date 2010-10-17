@@ -12,10 +12,10 @@ Codon Adaptation Index (CAI) w tables of almost 200 genomes,the computation is b
   A data frame with 200 observations on the following 64 variables, which denote the 64 codes.
 }
 \details{
-Codons can be accessed by row.names(wSet) and the genome names can be accessed by names(wSet).
+Codons can be accessed by names(wSet) and the genome names can be accessed by row.names(wSet).
 }
 \source{
-The data were combined from two sources: the first part is the first three columns,which contains w tables masked from the caitab dataset of seqinr package,while the other 197 columns were computed based the predicted highly expressed genes of 197 genomes from HEG-DB database.
+The data were combined from two sources: the first part is the first three rows,which contains w tables masked from the caitab dataset of seqinr package,while the other 197 rows were computed based the predicted highly expressed genes of 197 genomes from HEG-DB database.
 }
 \references{
 Puigbo P, Romeu A, Garcia-Vallve S. HEG-DB: a database of predicted highly expressed genes in prokaryotic complete genomes under translational selection. Nucl. Acids Res. 2008, 36:D524-527.

@@ -66,8 +66,8 @@ function(sequence=NULL,
 				}
 		}
 		#compute evaluation values
-		eval_value=sapply(rank(free_en,ties.method="max"),function(x)x**2)
-			+sapply(rank(sapply(CAI_value,function(x)1/x),ties.method="max"),
+		eval_value=sapply(rank(free_en,ties.method="max"),function(x)x**2)+
+			sapply(rank(sapply(CAI_value,function(x)1/x),ties.method="max"),
 			function(x)x**2)+sapply(rank(CAI_value_,ties.method="max"),function(x)x**2)
 		#cat(eval_value,"\n",file="result.txt",sep=" ",append=TRUE)
 		#store the mean eval value and maxium eval value into eval_value_set and eval_value_set02
@@ -77,9 +77,9 @@ function(sequence=NULL,
 		CAI_value_set_=append(CAI_value_set_,mean(CAI_value_))
 			
 		eval_value_set02=append(eval_value_set02,max(eval_value))
-		free_en_set02=append(free_en_set02,max(free_en))
-		CAI_value_set02=append(CAI_value_set02,min(CAI_value))
-		CAI_value_set02_=append(CAI_value_set02_,max(CAI_value_))
+		free_en_set02=append(free_en_set02,free_en[which.max(eval_value)])
+		CAI_value_set02=append(CAI_value_set02,CAI_value[which.max(eval_value)])
+		CAI_value_set02_=append(CAI_value_set02_,CAI_value_[which.max(eval_value)])
 		#do iteration when iter is less than generation
 		if(iter_order < iters){
 			#selection process

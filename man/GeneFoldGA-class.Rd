@@ -25,7 +25,7 @@
 \section{Methods}{
   \describe{
     \item{show}{\code{signature(object = "GeneFoldGA")}: Displaying the results of GeneFoldGA, the first three distinctive and optimum sequences can be returned, as well as the corresponding minimum free energys. }
-    \item{plotGeneGA}{\code{signature(object = "GeneFoldGA")}: Visualizing the variation of maximum and mean variable values during the progress that genetic algorithm performed. Furthermore, the plot also can be used to check the results whether well converged. }
+    \item{plotGeneGA}{\code{signature(object = "GeneFoldGA")}: Visualizing the variation of optimized and mean variable values during the progress that genetic algorithm performed. Furthermore, the plot also can be used to check the results whether well converged. }
   }
 }
 \seealso{\code{\link{GeneFoldGA}}, \code{\link{GeneGA}}, 
