@@ -8,8 +8,8 @@ Optimizing gene by only considering mRNA secondary structure using genetic algor
 }
 \usage{
 GeneFoldGA(sequence = NULL, popSize = 50, iters = 100, crossoverRate = 0.2, 
-	mutationChance = 0.05, region = NULL, showGeneration = TRUE, frontSeq = NULL,
-	organism="ec", ramp = FALSE,numcode=1)
+         mutationChance = 0.05, region = NULL, showGeneration = TRUE, 
+         frontSeq = NULL, organism="ec", ramp = FALSE,numcode=1)
 }
 \arguments{
   \item{sequence}{
@@ -63,6 +63,6 @@ Zhenpeng Li, Fei Li, Xiaochen Bo and Shengqi Wang
 \examples{
 seqfile=system.file("sequence","EGFP.fasta",package="GeneGA")
 seq=unlist(getSequence(read.fasta(seqfile),as.string=TRUE))
-GeneGA.result=GeneFoldGA(sequence=seq,popSize=40,iters=100,crossoverRate=0.2,
-	mutationChance=0.05,region=c(1,42))
+GeneGA.result=GeneFoldGA(sequence=seq,popSize=40,iters=100,crossoverRate=0.3,
+         mutationChance=0.05,region=c(1,42))
 }

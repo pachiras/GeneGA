@@ -1,5 +1,8 @@
 GeneCodon <-
 function(seq,organism="ec",max=TRUE,scale=0.5,numcode= 1){
+	if(sum(s2c(toupper(seq))%in%c("A","T","G","C")) != nchar(seq)){
+		stop("The input sequence must be nucleotide sequence only containg 'ATGC'")
+	}
 	data(wSet)
 	assign("translate",seqinr::translate,envir=.GlobalEnv)
 	if(seq=="") return("")

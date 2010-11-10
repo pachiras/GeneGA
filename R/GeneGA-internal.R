@@ -71,10 +71,10 @@ setMethod("plotGeneGA",signature(x="GeneGA"),
 				plot(x@CAI_value_set02,x@free_en_set02,xlim=xRange,ylim=yRange,
 					col=2,xlab="CAI Value",ylab="Free Energy",pch=20)
 			} else {
-				warning("Type 3 is not available while region and ramp are intersect")
+				stop("Type 3 is not available while region and ramp are intersect")
 				}
 		} else {
-			warning(paste("Plot type",type,"is not a supported type",sep=" "))
+			stop(paste("Plot type",type,"is not a supported type",sep=" "))
 	}
 }
 )

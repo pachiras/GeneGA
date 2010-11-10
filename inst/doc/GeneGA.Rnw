@@ -9,7 +9,7 @@
 \usepackage{natbib}
 
 \title{Optimizing gene expression with {\tt GeneGA}}
-\author{Zhenpeng Li}
+\author{Zhenpeng Li, Xiaochen Bo}
 
 \begin{document}
 \bibliographystyle{plainnat}
@@ -20,11 +20,11 @@
 
 \section{Introduction}
 
-Biological engineering has driven the demand of achieving high-level expression of heterologous genes. There are many factors that can influence the gene expression, and these factors can be divided into two categories, one relating to the synonymous mutaions of gene, such as codon bias, mRNA secondary structure and the other having no relationship with synonymous mutations, such as expression vectors design, gene dosage and promoter strength. Codon bias and folding energy have been deemed as two main mechanisms of synonymous mutations to modulate the protein abundance\citep{tuller2010translation}. A recent study of expression of a diverse library of GFP gene in E.coli concluded that mRNA folding and associated rates of translation initiation play a predominant role in shaping expression levels of individual genes,  whereas codon bias influences global translation efficiency and cellular fitness\citep{kudla2009coding}. Many tools have been developed to optimize gene for increasing its expression level, such as OPTIMIZER, GeneDesign and Gene Designer, while almost all of them merely consider codon bias to optimize genes. Here, we put forward a framework to optimize gene considering both codon bias and mRNA secondary structure using Genetic algorithm. The {\tt GeneGA} package includes the information of highly expressed genes of almost 200 genomes and can be used to optimize the expression level of a gene for heterologous gene expression using rules that have been found or to explore the rules dominating gene expression.
+Biological engineering has driven the demand of achieving high-level expression of heterologous genes. There are many factors that can influence the gene expression, and these factors can be divided into two categories, one relating to the synonymous mutaions of gene, such as codon bias, mRNA secondary structure and the other having no relationship with synonymous mutations, such as expression vectors design, gene dosage and promoter strength. Codon bias and folding energy have been deemed as two main mechanisms of synonymous mutations to modulate the protein abundance\citep{tuller2010translation}. A recent study of expression of a diverse library of GFP gene in E.coli concluded that mRNA folding and associated rates of translation initiation play a predominant role in shaping expression levels of individual genes, whereas codon bias influences global translation efficiency and cellular fitness\citep{kudla2009coding}. Many tools have been developed to optimize gene for increasing its expression level, such as OPTIMIZER, GeneDesign and Gene Designer, while almost all of them merely consider codon bias to optimize genes. Here, we put forward a framework to optimize gene considering both codon bias and mRNA secondary structure using Genetic algorithm. The {\tt GeneGA} package includes the information of highly expressed genes of almost 200 genomes and can be used to optimize the expression level of a gene for heterologous gene expression using rules that have been found or to explore the rules dominating gene expression.
 \par
 \section{Implementation}
 
-{\tt GeneGA} uses genetic algorithm to optimize the relationship between codon bias and mRNA secondary structure. Codon adaption index(CAI) is used to quantify codon bias,  which can be computed by {\it cai} function in {\tt seqinr} package, while minimum free energy is used to quantify mRNA secondary structure, which can be computed by {\it fold} function in {\tt GeneRfold} package. Certain region can be specified to optimize the relationship between codon bias and mRNA secondary structure, while codons in the other regions will be replaced by their correspondence most preference codons. Meanwhile, {\tt GeneGA} also has the option to let the user specify the ramp region\citep{tuller2010evolutionarily}, i.e. the first 30-50 codons of genes, which has been suggested to have low translation efficiency and serve as an optimal and robust means to reduce ribosomal traffic jams. When ramp and the specified region are intersecting, the intersectant region will be optimized to have lower CAI and higher minimum free energy,  while the other region will be optimized to have higher CAI and higher minimum free energy.
+{\tt GeneGA} uses genetic algorithm to optimize the relationship between codon bias and mRNA secondary structure. Codon adaption index(CAI) is used to quantify codon bias,  which can be computed by {\it cai} function in {\tt seqinr} package, while minimum free energy is used to quantify mRNA secondary structure, which can be computed by {\it fold} function in {\tt GeneRfold} package. Certain region can be specified to optimize the relationship between codon bias and mRNA secondary structure, while codons in the other regions will be replaced by their correspondence most preference codons. Meanwhile, {\tt GeneGA} also has the option to let the user specify the ramp region\citep{tuller2010evolutionarily}, i.e. the first 30-50 codons of genes, which has been suggested to have low translation efficiency and serve as an optimal and robust means to reduce ribosomal traffic jams. When ramp and the specified region are intersecting, the intersectant region will be optimized to have lower CAI and higher minimum free energy, while the other region will be optimized to have higher CAI and higher minimum free energy.
 \\
 The GA procedure is as follows:
 \\
@@ -64,7 +64,7 @@ With probability mutationChance, each codon of sequence will change its codon by
 \par
 \section{Functions and examples}
 
-Users are free to choose the factors to optimize the gene. The function {\it GeneGA} considers both codon bias and mRNA secondary structure to optimize their relationship, {\it GeneFoldGA} only takes mRNA secondary structure into account and result in the largest minimum free energy of the mRNA or selected region, while {\it GeneCodon} merely optimzes the codon bias of gene. Two {\it show} methods are provided to display the results of {\it GeneGA} and {\it GeneFoldGA}, meanwhile, two {\it plotGeneGA} methods can be used to visualize the variation of maximum(minimum) and mean overall evaluation values and variable values during the optimizing progress. Moreover, the package also contains {\it wSet}, which is a data frame with 200 genomes on 64 codons. Users can also compute w table by themselves using specified highly expressed genes of given species or tissue and use the w table by adding it to {\it wSet}. For example, on the assumption that "EGFP.fasta" is file containing highly expressed gene. By using the  following codes, w table can be computed:
+Users are free to choose the factors to optimize the gene. The function {\it GeneGA} considers both codon bias and mRNA secondary structure to optimize their relationship, {\it GeneFoldGA} only takes mRNA secondary structure into account and result in the largest minimum free energy of the mRNA or selected region, while {\it GeneCodon} merely optimizes the codon bias of gene. Detailed description of these functions can be accessed from the reference manual. Two {\it show} methods are provided to display the results of {\it GeneGA} and {\it GeneFoldGA}, meanwhile, two {\it plotGeneGA} methods can be used to visualize the variation of optimized and mean overall evaluation values and variable values during the optimizing progress. Moreover, the package also contains {\it wSet}, which is a data frame with 200 genomes on 64 codons. Users can also compute w table by themselves using specified highly expressed genes of given species or tissue and use the w table by adding it to {\it wSet}. For example, on the assumption that "EGFP.fasta" is file containing highly expressed gene. By using the  following codes, w table can be computed:
 <<echo=TRUE>>=
 library(GeneGA)
 seqfile=system.file("sequence", "EGFP.fasta", package="GeneGA")
@@ -72,7 +72,7 @@ aa=read.fasta(seqfile)
 rscu=uco(unlist(aa), index="rscu")
 w_value=rscu # w_value is the w table we need computing
 names(w_value)=names(rscu)
-names=sapply(names(rscu), function(x)translate(s2c(x)))
+names=sapply(names(rscu), function(x) translate(s2c(x)))
 amino=hash()
 for(i in unique(names)){
 	amino[[i]]=max(rscu[which(names==i)])
@@ -89,11 +89,11 @@ Taking Enhanced Green Fluorescent Protein(EGFP) as an example, we use {\it GeneG
 seqfile=system.file("sequence", "EGFP.fasta", package="GeneGA")
 seq=unlist(getSequence(read.fasta(seqfile), as.string=TRUE))
 @
-2) Implementation of the {\it GeneGA}, the region is specified between 1 and 60. Users can flexibly adjust the parameters to archive an ideal result. Generally, longer region needs larger popSize and iters, while larger crossoverRate and mutationChance can archive a sooner convergence of results.
+2) Implementation of the {\it GeneGA}, the region is specified between 1 and 60. It should be noted that the designated region must be a multiple of three and in accordance with the ORF(Open reading frame) of gene. Users can also optionally add the regulatory segment before the start codon or design ramp region by using frontSeq or ramp parameters. Meanwhile, the parameters controling the Genetic algorithm processes, such as popSize, iters, crossoverRate and mutationChance, can be flexibly adjusted to archive ideal results. Generally, longer region needs larger popSize and iters, while larger crossoverRate and mutationChance can archive a sooner convergence of results.
 <<echo=TRUE>>=
-GeneGA.result=GeneGA(sequence=seq, popSize=40, iters=150, crossoverRate=0.4, mutationChance=0.1, region=c(1,60), organism="ec", showGeneration=FALSE)
+GeneGA.result=GeneGA(sequence=seq, popSize=40, iters=100, crossoverRate=0.3, mutationChance=0.05, region=c(1,60), organism="ec", showGeneration=FALSE)
 @
-3) Display the results and plot the variation of maximum(minimum) and mean overall evaluation values and variable values during the optimizing progress.
+3) Display the results and plot the variation of optimized and mean overall evaluation values and variable values during the optimizing progress. The {\it show} method will display the first three distinctive and optimum sequences, as well as their overall evaluation values, CAI values and minimum free energys. The {\it plotGeneGA} method can visualize the variation of optimized and mean overall evaluation values and variable values during the progress that genetic algorithm performed.
 <<echo=TRUE>>=
 show(GeneGA.result)
 @
@@ -116,7 +116,7 @@ plotGeneGA(GeneGA.result, type=3)
 \end{center}
 @
 \section{Installation notes}
-The {\tt GeneGA} package depends on four other R packages: one Bioconductor package and three CRAN packages. Make sure these R packages and Vienna RNA Package(http://www.tbi.univie.ac.at/~ivo/RNA/) be installed before installing {\tt GeneGA}.
+The {\tt GeneGA} package depends on three other R packages: one Bioconductor package and two CRAN packages. Other than these R packages, Vienna RNA Package(http://www.tbi.univie.ac.at/~ivo/RNA/) should also be installed on your operating system.
 \par
 
 \bibliography{GeneGA}

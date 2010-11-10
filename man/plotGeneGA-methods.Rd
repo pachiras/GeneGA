@@ -25,8 +25,8 @@ Zhenpeng Li, Fei Li, Xiaochen Bo and Shengqi Wang
 \examples{
 seqfile=system.file("sequence", "EGFP.fasta", package="GeneGA")
 seq=unlist(getSequence(read.fasta(seqfile), as.string=TRUE))
-GeneGA.result=GeneFoldGA(sequence=seq, popSize=40, iters=100, crossoverRate=0.2, 
-	mutationChance=0.05, region=c(1,42))
+GeneGA.result=GeneFoldGA(sequence=seq, popSize=40, iters=100, crossoverRate=0.3, 
+         mutationChance=0.05, region=c(1,42))
 plotGeneGA(GeneGA.result)
 }
 \seealso{\code{\link{GeneGA-class}}, \code{\link{GeneFoldGA-class}}, \code{\link{GeneGA}},

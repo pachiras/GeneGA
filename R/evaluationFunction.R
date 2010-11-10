@@ -3,7 +3,7 @@ function(xx,w = NULL,frontValue=NULL){
 	if(is.null(frontValue)){
 		free_energy=fold(paste(xx,collapse=""))[[2]]
 	} else {
-		free_energy=fold(paste(c(xx,s2c(frontValue)),collapse=""))[[2]]
+		free_energy=fold(paste(c(s2c(frontValue),xx),collapse=""))[[2]]
 	}
 	CAI=cai(s2c(paste(xx,collapse="")),w)
 	return(c(free_energy,CAI))
@@ -24,7 +24,7 @@ function(xx,w = NULL,frontValue=NULL,region_=NULL,ramp_value_=NULL){
 	if(is.null(frontValue)){
 		free_energy=fold(paste(xx,collapse=""))[[2]]
 	} else {
-		free_energy=fold(paste(c(xx,s2c(frontValue)),collapse=""))[[2]]
+		free_energy=fold(paste(c(s2c(frontValue),xx),collapse=""))[[2]]
 	}
 	CAI=cai(s2c(paste(xx,collapse=""))[1:(ramp_value_-region_[1]+1)],w)
 	CAI_=cai(s2c(paste(xx,collapse=""))[(ramp_value_-region_[1]+2):(region_[2]-region_[1]+1)],w)

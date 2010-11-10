@@ -11,8 +11,8 @@ R based Genetic algorithm for gene expression optimization considering mRNA seco
 \tabular{ll}{
 Package: \tab GeneGA\cr
 Type: \tab Package\cr
-Version: \tab 0.99.2\cr
-Date: \tab 2010-10-17\cr
+Version: \tab 1.1.0\cr
+Date: \tab 2010-11-10\cr
 License: \tab GPL version 2\cr
 LazyLoad: \tab yes\cr
 }
@@ -34,8 +34,8 @@ Tuller T, Carmi A, Vestsigian K, et al. An Evolutionarily Conserved Mechanism fo
 \examples{
 seqfile=system.file("sequence","EGFP.fasta",package="GeneGA")
 seq=unlist(getSequence(read.fasta(seqfile),as.string=TRUE))
-GeneGA.result=GeneFoldGA(sequence=seq,popSize=40,iters=100,crossoverRate=0.2,
-	mutationChance=0.05,region=c(1,42))
+GeneGA.result=GeneFoldGA(sequence=seq,popSize=40,iters=100,crossoverRate=0.3,
+         mutationChance=0.05,region=c(1,42))
 plotGeneGA(GeneGA.result)
 show(GeneGA.result)
 }

@@ -8,9 +8,9 @@ Optimizing gene expression considering both mRNA secondary structure and codon u
 Results can be visualized with plotGeneGA and displayed with show.
 }
 \usage{
-GeneGA(sequence = NULL, popSize = 50, iters = 150, crossoverRate = 0.2, 
-	mutationChance = 0.05, region = NULL, organism = "ec", showGeneration = TRUE,
-	frontSeq = NULL, ramp=FALSE, numcode=1)
+GeneGA(sequence = NULL, popSize = 50, iters = 150, crossoverRate = 0.2,
+         mutationChance = 0.05, region = NULL, organism = "ec", 
+         showGeneration = TRUE, frontSeq = NULL, ramp=FALSE, numcode=1)
 }
 \arguments{
   \item{sequence}{
@@ -65,6 +65,6 @@ Zhenpeng Li, Fei Li, Xiaochen Bo and Shengqi Wang
 \examples{
 seqfile=system.file("sequence","EGFP.fasta",package="GeneGA")
 seq=unlist(getSequence(read.fasta(seqfile),as.string=TRUE))
-GeneGA.result=GeneGA(sequence=seq,popSize=40,iters=100,crossoverRate=0.4,
-	mutationChance=0.1,region=c(1,60))
+GeneGA.result=GeneGA(sequence=seq,popSize=40,iters=100,crossoverRate=0.3,
+         mutationChance=0.05,region=c(1,60))
 }

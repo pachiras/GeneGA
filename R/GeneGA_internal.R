@@ -11,6 +11,9 @@ function(sequence=NULL,
 		ramp_value=NULL,
 		numcode = 1
 		){
+	if(sum(s2c(toupper(sequence))%in%c("A","T","G","C")) != nchar(sequence)){
+		stop("The input sequence must be nucleotide sequence only containg 'ATGC'")
+	}
 	data(wSet)
 	if(is.null(region)) region=c(1,nchar(sequence))
 	assign("translate",seqinr::translate,envir=.GlobalEnv)
@@ -25,7 +28,7 @@ function(sequence=NULL,
 	#if not full sequence was specified, subtract the target sequence from given sequence
 	seq=substr(sequence,region[1],region[2])
 	if((region[2]-region[1]+1)%%3 != 0){
-	warning("the given region must be the multiple of  3, please reassign the region")
+	stop("the given region must be the multiple of  3, please reassign the region")
 	}
 	amino_seq=translate(s2c(seq),numcode = numcode)
 	#producing random population
