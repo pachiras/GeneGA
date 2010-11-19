@@ -91,7 +91,7 @@ seq=unlist(getSequence(read.fasta(seqfile), as.string=TRUE))
 @
 2) Implementation of the {\it GeneGA}, the region is specified between 1 and 60. It should be noted that the designated region must be a multiple of three and in accordance with the ORF(Open reading frame) of gene. Users can also optionally add the regulatory segment before the start codon or design ramp region by using frontSeq or ramp parameters. Meanwhile, the parameters controling the Genetic algorithm processes, such as popSize, iters, crossoverRate and mutationChance, can be flexibly adjusted to archive ideal results. Generally, longer region needs larger popSize and iters, while larger crossoverRate and mutationChance can archive a sooner convergence of results.
 <<echo=TRUE>>=
-GeneGA.result=GeneGA(sequence=seq, popSize=40, iters=100, crossoverRate=0.3, mutationChance=0.05, region=c(1,60), organism="ec", showGeneration=FALSE)
+GeneGA.result=GeneGA(sequence=seq, popSize=40, iters=150, crossoverRate=0.3, mutationChance=0.05, region=c(1,60), organism="ec", showGeneration=FALSE)
 @
 3) Display the results and plot the variation of optimized and mean overall evaluation values and variable values during the optimizing progress. The {\it show} method will display the first three distinctive and optimum sequences, as well as their overall evaluation values, CAI values and minimum free energys. The {\it plotGeneGA} method can visualize the variation of optimized and mean overall evaluation values and variable values during the progress that genetic algorithm performed.
 <<echo=TRUE>>=
