@@ -1,5 +1,5 @@
 %\VignetteIndexEntry{GeneGA}
-%\VignetteDepends{hash, GeneRfold, seqinr}
+%\VignetteDepends{hash, seqinr}
 %\VignetteKeywords{GeneGA, GeneFoldGA}
 %\VignettePackage{GeneGA}
 
@@ -24,7 +24,7 @@ Biological engineering has driven the demand of achieving high-level expression 
 \par
 \section{Implementation}
 
-{\tt GeneGA} uses genetic algorithm to optimize the relationship between codon bias and mRNA secondary structure. Codon adaption index(CAI) is used to quantify codon bias,  which can be computed by {\it cai} function in {\tt seqinr} package, while minimum free energy is used to quantify mRNA secondary structure, which can be computed by {\it fold} function in {\tt GeneRfold} package. Certain region can be specified to optimize the relationship between codon bias and mRNA secondary structure, while codons in the other regions will be replaced by their correspondence most preference codons. Meanwhile, {\tt GeneGA} also has the option to let the user specify the ramp region\citep{tuller2010evolutionarily}, i.e. the first 30-50 codons of genes, which has been suggested to have low translation efficiency and serve as an optimal and robust means to reduce ribosomal traffic jams. When ramp and the specified region are intersecting, the intersectant region will be optimized to have lower CAI and higher minimum free energy, while the other region will be optimized to have higher CAI and higher minimum free energy.
+{\tt GeneGA} uses genetic algorithm to optimize the relationship between codon bias and mRNA secondary structure. Codon adaption index(CAI) is used to quantify codon bias,  which can be computed by {\it cai} function in {\tt seqinr} package, while minimum free energy is used to quantify mRNA secondary structure, which can be computed by {\it fold} function. Certain region can be specified to optimize the relationship between codon bias and mRNA secondary structure, while codons in the other regions will be replaced by their correspondence most preference codons. Meanwhile, {\tt GeneGA} also has the option to let the user specify the ramp region\citep{tuller2010evolutionarily}, i.e. the first 30-50 codons of genes, which has been suggested to have low translation efficiency and serve as an optimal and robust means to reduce ribosomal traffic jams. When ramp and the specified region are intersecting, the intersectant region will be optimized to have lower CAI and higher minimum free energy, while the other region will be optimized to have higher CAI and higher minimum free energy.
 \\
 The GA procedure is as follows:
 \\
