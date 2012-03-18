@@ -1,5 +1,6 @@
 #RNAfold was called in linux environment
-fold=function(x){
+fold <-
+function(x){
 	fold_r=system(paste("echo ",x,"|RNAfold",sep=""),intern =T)
 	nindex=grep("[\\(\\)]",s2c(fold_r[2]))
 	nlength=length(nindex)
