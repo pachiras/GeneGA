@@ -6,14 +6,13 @@ function(seq,organism="ec",max=TRUE,scale=0.5,numcode= 1){
 	data(wSet)
 	assign("translate",seqinr::translate,envir=.GlobalEnv)
 	if(seq=="") return("")
-	codon_w=hash()
 	code_invert=hash()
 	stardardSeq="GAGTCGTTCAGTAAACACTGTCAACGGCAGGCTCGAATATAACCCGAAACAACGTGGAATTTTCTCACCGTCCTTCCGTGCTCTCTGGGGGTTATGTAGCCAGCAACTGTAAGATACGGCAGCAGGAACTGAAAGTCAGTGATCGCGCGTGGATTACCTCATTATGACCTATTGCGCGATGCCGGTTCCATT"
 	for(i in seq(1,192,3)){
 		code_invert[[substr(stardardSeq,i,i+2)]]=translate(s2c(stardardSeq)[i:(i+2)],numcode = numcode)
 	}
 	code=invert(code_invert)
-	.set( codon_w, keys=names(wSet), values=wSet[row.names(wSet) == organism,] )
+	codon_w <- hash(keys=names(wSet), values=wSet[row.names(wSet) == organism,] )
 	amino=translate(s2c(seq),numcode = numcode)
 	new_seq=c()
 	if(max == TRUE){
