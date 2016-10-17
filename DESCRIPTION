@@ -1,0 +1,12 @@
+Package: GeneGA
+Type: Package
+Title: Design gene based on both mRNA secondary structure and codon usage bias using Genetic algorithm
+Version: 1.24.0
+Date: 2013-3-6
+Author: Zhenpeng Li and Haixiu Huang
+Maintainer: Zhenpeng Li <zpli21@gmail.com>
+Depends: seqinr, hash, methods
+biocViews:GeneExpression
+Description: R based Genetic algorithm for gene expression optimization by considering both mRNA secondary structure and codon usage bias, GeneGA includes the information of highly expressed genes of almost 200 genomes. Meanwhile, Vienna RNA Package is needed to ensure GeneGA to function properly.
+License: GPL version 2
+URL: http://www.tbi.univie.ac.at/~ivo/RNA/
